@@ -34,7 +34,8 @@ SOURCES += \
 HEADERS += \
         mainwindow.h \
     loginform.h \
-    mainform.h
+    mainform.h \
+    headers.h
 
 FORMS += \
         mainwindow.ui

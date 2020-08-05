@@ -1,11 +1,7 @@
 #ifndef LOGINFORM_H
 #define LOGINFORM_H
 
-#include <QDialog>
-#include <QLineEdit>
-#include <QLabel>
-#include <QPushButton>
-#include <QTcpSocket>
+#include <headers.h>
 
 class loginform : public QDialog
 {
@@ -15,12 +11,14 @@ public:
 signals:
 
 public slots:
-    void login();
-private:
+    void logindb();
+    void loginserver();
+public:
     QLabel *username1;
     QLineEdit *username2;
     QLabel *userpassword1;
     QLineEdit *userpassword2;
+    QPushButton *loginSB;
     QPushButton *loginB;
     QPushButton *esc;
     QTcpSocket *socket1;

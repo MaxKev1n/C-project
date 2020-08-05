@@ -1,8 +1,7 @@
 #ifndef MAINFORM_H
 #define MAINFORM_H
 
-#include <QMainWindow>
-#include <QLabel>
+#include <headers.h>
 
 class mainform : public QMainWindow
 {
@@ -10,7 +9,11 @@ class mainform : public QMainWindow
 public:
     explicit mainform(QWidget *parent = 0);
 private:
-    QLabel *welcome;
+    QTextEdit *input;
+    QTextBrowser *displaytext;
+    QPushButton *sendp;
+public slots:
+    void send();
 };
 
 #endif // MAINFORM_H
