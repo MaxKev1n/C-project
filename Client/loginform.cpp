@@ -7,7 +7,8 @@
 
 loginform::loginform(QDialog *parent) : QDialog(parent)
 {
-    this->setWindowTitle("登陆界面");
+    this->setWindowTitle(tr("登录界面"));
+    this->setFixedSize(400, 300);
 
     username1 = new QLabel(this);
     username1->move(70, 80);
@@ -18,12 +19,12 @@ loginform::loginform(QDialog *parent) : QDialog(parent)
     username2->setEchoMode(QLineEdit::Normal);
 
     userpassword1 = new QLabel(this);
-    userpassword1->move(70, 130);
+    userpassword1->move(80, 130);
     userpassword1->setText("密码");
 
     userpassword2 = new QLineEdit(this);
-    username2->move(120, 130);
-    username2->setEchoMode(QLineEdit::Password);
+    userpassword2->move(120, 130);
+    userpassword2->setEchoMode(QLineEdit::Password);
 
     loginB = new QPushButton(this);
     loginB->move(70, 200);
@@ -31,7 +32,7 @@ loginform::loginform(QDialog *parent) : QDialog(parent)
     connect(loginB, &QPushButton::clicked,  this, &loginform::login);
 
     esc = new QPushButton(this);
-    esc->move(170, 200);
+    esc->move(240, 200);
     esc->setText("退出");
     connect(esc, &QPushButton::clicked, this, &loginform::close);
 
@@ -49,7 +50,7 @@ void loginform::login()
    QString psd = userpassword2->text();
    if(!db.open()){
        QMessageBox::about(this, tr("提示"), tr("连接失败，请重试"));
-       username2->clear();
+       userpassword2->clear();
        return;
    }
    else{
