@@ -9,9 +9,12 @@
 class loginform : public QDialog
 {
     Q_OBJECT
-signals:
 public:
-    slots: void login();
+    explicit loginform(QDialog *parent = 0);
+signals:
+
+public slots:
+    void login();
 private:
     QLabel *username1;
     QLineEdit *username2;
@@ -19,6 +22,7 @@ private:
     QLineEdit *userpassword2;
     QPushButton *loginB;
     QPushButton *esc;
+
 };
 
 #endif // LOGINFORM_H
