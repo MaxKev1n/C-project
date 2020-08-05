@@ -36,6 +36,13 @@ loginform::loginform(QDialog *parent) : QDialog(parent)
     esc->setText("退出");
     connect(esc, &QPushButton::clicked, this, &loginform::close);
 
+    socket1 =new QTcpSocket;
+
+}
+
+void loginform::sendmessage()
+{
+
 }
 
 void loginform::login()
@@ -48,22 +55,30 @@ void loginform::login()
 
    QString user = username2->text();
    QString psd = userpassword2->text();
-   if(!db.open()){
-       QMessageBox::about(this, tr("提示"), tr("连接失败，请重试"));
-       userpassword2->clear();
+
+   socket1->connectToHost("127.0.0.1", 8080); //服务器ip地址及端口
+   if(!socket1->waitForConnected(1000)){
+       QMessageBox::about(this, tr("提示"), tr("连接服务器失败"));
        return;
    }
    else{
-       QMessageBox::about(this, tr("提示"), tr("连接成功"));
-       QString s = QString("select * from User where username='"+user+"' and password='"+psd+"'");
-       QSqlQuery query;
-       if(query.exec(s)&&query.next()){
-           QMessageBox::about(this, tr("提示"), tr("登录成功"));
+       if(!db.open()){
+           QMessageBox::about(this, tr("提示"), tr("连接失败，请重试"));
+           userpassword2->clear();
            return;
        }
        else{
-           QMessageBox::about(this, tr("提示"), tr("登录失败"));
-           return;
+           QMessageBox::about(this, tr("提示"), tr("连接成功"));
+           QString s = QString("select * from User where username='"+user+"' and password='"+psd+"'");
+           QSqlQuery query;
+           if(query.exec(s)&&query.next()){
+               QMessageBox::about(this, tr("提示"), tr("登录成功"));
+               return;
+           }
+           else{
+               QMessageBox::about(this, tr("提示"), tr("登录失败"));
+               return;
+           }
        }
    }
 }

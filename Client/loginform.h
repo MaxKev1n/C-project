@@ -5,6 +5,7 @@
 #include <QLineEdit>
 #include <QLabel>
 #include <QPushButton>
+#include <QTcpSocket>
 
 class loginform : public QDialog
 {
@@ -22,6 +23,7 @@ private:
     QLineEdit *userpassword2;
     QPushButton *loginB;
     QPushButton *esc;
+    QTcpSocket *socket1;
 
 };
 
