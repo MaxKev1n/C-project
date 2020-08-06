@@ -27,4 +27,4 @@
   2. 将IPv4地址填入发送数据函数  
   3. 远程客户端接收数据后输出在TextBrowser  
 <img width="597" height="478" src="https://github.com/MaxKev1n/C-project/blob/master/images/result1.png"/>
-<img width="150" height="150" src="https://github.com/MaxKev1n/C-project/blob/master/images/result2.png"/>
+<img width="597" height="478" src="https://github.com/MaxKev1n/C-project/blob/master/images/result2.png"/>
