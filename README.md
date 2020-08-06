@@ -26,5 +26,5 @@
   原理：1. 输入远程客户端的IPv4地址  
   2. 将IPv4地址填入发送数据函数  
   3. 远程客户端接收数据后输出在TextBrowser  
-<img width="597" height="478" src="https://github.com/MaxKev1n/C-project/blob/master/images/result1.png"/>
+<img width="452" height="512" src="https://github.com/MaxKev1n/C-project/blob/master/images/result1.png"/>
 <img width="398" height="319" src="https://github.com/MaxKev1n/C-project/blob/master/images/result2.png"/>
