@@ -27,4 +27,8 @@
   2. 将IPv4地址填入发送数据函数  
   3. 远程客户端接收数据后输出在TextBrowser  
 <img width="452" height="512" src="https://github.com/MaxKev1n/C-project/blob/master/images/result1.png"/>
-<img width="398" height="319" src="https://github.com/MaxKev1n/C-project/blob/master/images/result2.png"/>
+<img width="398" height="319" src="https://github.com/MaxKev1n/C-project/blob/master/images/result2.png"/>  
+# 2020.8.7
+## 00：36  
+成功在服务器上搭建完成MySQL数据库并成功连接数据库  
+**已知问题：QT库中缺少libmysql.dll文件，应当从Mysql安装目录中取出放入QT安装目录中，且应该符合QT位数，即：32位QT使用32位libmysql.dll文件文件，64位QT使用64位libmysql.dll文件** 
