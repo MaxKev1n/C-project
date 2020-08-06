@@ -53,25 +53,29 @@ void loginform::loginserver()
 
 void loginform::logindb()
 {
-   QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
-   db.setHostName("");         //数据库主机名
-   db.setDatabaseName("");     //数据库名称
-   db.setUserName("");         //数据库用户名
-   db.setPassword("");         //数据库密码
+   QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");  //驱动名称
+   db.setHostName("47.107.48.106");         //数据库主机名
+   db.setDatabaseName("project");   //数据库名称
+   db.setPort(3306);
+   db.setUserName("root");         //数据库用户名
+   db.setPassword("1048271926");         //数据库密码
 
    QString user = username2->text();
    QString psd = userpassword2->text();
 
   if(!db.open()){
      QMessageBox::about(this, tr("提示"), tr("连接数据库失败，请重试"));
+     qDebug() <<"error_MySql:\n" << db.lastError().text();
      userpassword2->clear();
+
    }
   else{
       QMessageBox::about(this, tr("提示"), tr("连接数据库成功"));
-      QString s = QString("select * from User where username='"+user+"' and password='"+psd+"'");
+      QString s = QString("select * from users where username='"+user+"' and password='"+psd+"'");
       QSqlQuery query;
       if(query.exec(s)&&query.next()){
         QMessageBox::about(this, tr("提示"), tr("登录成功"));
+        accept();
         }
       else{
         QMessageBox::about(this, tr("提示"), tr("登录失败"));
@@ -140,5 +144,3 @@ void mainform::receive()
     displaytext->append(datagram);
     displaytext->append("\n");
 }
-
-

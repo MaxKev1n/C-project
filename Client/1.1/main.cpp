@@ -9,10 +9,10 @@ int main(int argc, char *argv[])
     main->setWindowTitle("欢迎界面");
 
     loginform login;
-     //if (login.exec() == QDialog::Accepted)
-       //{
+    if (login.exec() == QDialog::Accepted)
+       {
              main->show();
              return app.exec();
-      // }
-      //       else return 0;
+       }
+             else return 0;
 }
