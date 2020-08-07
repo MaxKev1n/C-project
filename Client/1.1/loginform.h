@@ -13,7 +13,6 @@ signals:
 
 public slots:
     void logindb();
-    void loginserver();
 public:
     QLabel *username1;
     QLineEdit *username2;

@@ -11,6 +11,7 @@ int main(int argc, char *argv[])
     loginform login;
     if (login.exec() == QDialog::Accepted)
        {
+             qDebug() <<login.username2->text();
              main->show();
              return app.exec();
        }

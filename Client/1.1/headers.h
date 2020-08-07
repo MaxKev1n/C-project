@@ -3,6 +3,7 @@
 
 #include <QMessageBox>
 #include <QSqlDatabase>
+#include <QWidget>
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QMainWindow>
@@ -16,5 +17,8 @@
 #include <QTcpSocket>
 #include <QUdpSocket>
 #include <QByteArray>
+#include <QListWidgetItem>
+
+
 
 #endif // HEADERS_H

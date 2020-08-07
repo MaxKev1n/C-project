@@ -6,6 +6,15 @@ loginform::loginform(QDialog *parent) : QDialog(parent)
     this->setWindowTitle(tr("登录界面"));
     this->setFixedSize(400, 300);
 
+    socket1 = new QTcpSocket;
+    socket1->connectToHost("47.107.48.106", 6666);
+    if(socket1->waitForConnected(800)){
+        QMessageBox::about(this, tr("提示"), tr("连接服务器成功"));
+    }
+    else{
+        QMessageBox::about(this, tr("提示"), tr("连接服务器失败，请重试"));
+    }
+
     username1 = new QLabel(this);
     username1->move(70, 80);
     username1->setText("用户名");
@@ -22,34 +31,19 @@ loginform::loginform(QDialog *parent) : QDialog(parent)
     userpassword2->move(120, 130);
     userpassword2->setEchoMode(QLineEdit::Password);
 
-    loginSB = new QPushButton(this);
-    loginSB->move(10, 200);
-    loginSB->setText("服务器");
-    connect(loginSB, &QPushButton::clicked,  this, &loginform::loginserver);
 
     loginB = new QPushButton(this);
-    loginB->move(160, 200);
+    loginB->move(50, 200);
     loginB->setText("登录");
     connect(loginB, &QPushButton::clicked,  this, &loginform::logindb);
 
     esc = new QPushButton(this);
-    esc->move(310, 200);
+    esc->move(250, 200);
     esc->setText("退出");
     connect(esc, &QPushButton::clicked, this, &loginform::close);
 
 }
 
-void loginform::loginserver()
-{
-    socket1 = new QTcpSocket;
-    socket1->connectToHost("127.0.0.1", 66666);
-    if(socket1->waitForConnected(800)){
-        QMessageBox::about(this, tr("提示"), tr("连接服务器成功"));
-    }
-    else{
-        QMessageBox::about(this, tr("提示"), tr("连接服务器失败，请重试"));
-    }
-}
 
 void loginform::logindb()
 {
