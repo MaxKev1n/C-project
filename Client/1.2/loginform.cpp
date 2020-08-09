@@ -75,6 +75,7 @@ void loginform::logindb()
         else{
             socket1->write(username2->text().toUtf8());
         }
+        db.close();
         accept();
         }
       else{
@@ -132,6 +133,9 @@ mainform::mainform(QWidget *parent) : QMainWindow(parent)
     addfriendP->setText("添加好友");
     connect(addfriendP, &QPushButton::clicked, this, &mainform::addfriends);
 
+    dialog = new addfriend();
+    connect(dialog, SIGNAL(refresh()), this, SLOT(friends()));
+
 }
 
 void mainform::send()
@@ -168,6 +172,7 @@ void mainform::receive()
 
 void mainform::friends()
 {
+    listWidget->clear();
     QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");//驱动名称;
     db.setHostName("47.107.48.106");         //数据库主机名
     db.setDatabaseName("project");   //数据库名称
@@ -195,11 +200,13 @@ void mainform::friends()
                }
             QListWidgetItem *item = new QListWidgetItem;
             item->setText(friendname);
+            item->setTextAlignment(Qt::AlignCenter);
             item->setSizeHint(QSize(60,30));
             int index = listWidget->currentRow();
             listWidget->insertItem(index + 1, item);
             map[friendname] = friendip;
            }
+        db.close();
     }
 }
 
@@ -211,7 +218,6 @@ void mainform::communicate(QListWidgetItem *item)
 
 void mainform::addfriends()
 {
-    addfriend *dialog = new addfriend;
     dialog->username = name;
     dialog->show();
 }
@@ -273,6 +279,7 @@ void regist::registdb()
       QSqlQuery query2;
       if(query2.exec(s)&&query2.next()){
           QMessageBox::about(this, tr("提示"), tr("注册成功"));
+          db.close();
           accept();
           }
    }
@@ -315,9 +322,11 @@ void addfriend::searchuser()
       query.exec(s);
       if(query.next()){
           QMessageBox::about(this, tr("提示"), tr("存在该用户"));
+          db.close();
       }
       else{
           QMessageBox::about(this, tr("提示"), tr("不存在该用户"));
+          db.close();
       }
     }
 }
@@ -339,8 +348,13 @@ void addfriend::adduser()
       QSqlQuery query;
       QString s = QString("select * from users where username='"+friendname+"'");
       query.exec(s);
+
+      if(username == friendname){
+          QMessageBox::about(this, tr("警告"), tr("不允许添加本人"));
+          isexist = false;
+          return;
+      }
       if(query.next()){
-          QMessageBox::about(this, tr("提示"), tr("存在该用户"));
           isexist = true;
       }
       else{
@@ -351,12 +365,19 @@ void addfriend::adduser()
 
    if(db.open()&&isexist){
       QSqlQuery query(db);
-      int size = query.size() + 1;
+      int size = 0;
+      query.prepare("select count(*) from userfriend");
+      query.exec();
+      if(query.next())
+         size = query.value(0).toInt() + 1;
       query.prepare("INSERT INTO userfriend(id, user, friends) VALUES(?, ?, ?)");
       query.addBindValue(size);
+      qDebug()<<size<<username<<friendname;
       query.addBindValue(username);
       query.addBindValue(friendname);
       query.exec();
       QMessageBox::about(this, tr("提示"), tr("添加成功"));
+      emit refresh();
     }
+   db.close();
 }

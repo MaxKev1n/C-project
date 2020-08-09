@@ -26,12 +26,32 @@ public:
 
 };
 
+class addfriend : public QDialog
+{
+    Q_OBJECT
+public:
+    explicit addfriend(QDialog *parent = 0);
+    QString username;
+signals:
+    void refresh();
+private:
+    QPushButton *search;
+    QPushButton *add;
+    QLineEdit *addname;
+public slots:
+    void searchuser();
+    void adduser();
+
+};
+
+
 class mainform : public QMainWindow
 {
     Q_OBJECT
 public:
     explicit mainform(QWidget *parent = 0);
     QString name;
+    addfriend *dialog;
 
 private:
     QTextEdit *input;
@@ -71,20 +91,5 @@ public slots:
     void registdb();
 };
 
-class addfriend : public QDialog
-{
-    Q_OBJECT
-public:
-    explicit addfriend(QDialog *parent = 0);
-    QString username;
-private:
-    QPushButton *search;
-    QPushButton *add;
-    QLineEdit *addname;
-public slots:
-    void searchuser();
-    void adduser();
-
-};
 
 #endif // LOGINFORM_H
