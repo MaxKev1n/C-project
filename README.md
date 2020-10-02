@@ -26,8 +26,8 @@
 1. 输入远程客户端的IPv4地址  
 2. 将IPv4地址填入发送数据函数  
 3. 远程客户端接收数据后输出在TextBrowser  
-* <img width="452" height="512" src="https://github.com/MaxKev1n/C-project/blob/master/images/result1.png"/>
-* <img width="398" height="319" src="https://github.com/MaxKev1n/C-project/blob/master/images/result2.png"/>  
+//* <img width="452" height="512" src="https://github.com/MaxKev1n/C-project/blob/master/images/result1.png"/>
+//* <img width="398" height="319" src="https://github.com/MaxKev1n/C-project/blob/master/images/result2.png"/>  
 ## V1.1(2020/08/06 00：36）
 * **已知问题：QT库中缺少libmysql.dll文件，应当从Mysql安装目录中取出放入QT安装目录中，且应该符合QT位数，即：32位QT使用32位libmysql.dll文件文件，64位QT使用64位libmysql.dll文件.同时，在生成exe文件后应将libmysql.dll文件放入exe文件所在文件夹**   
 ## V1.1(2020/08/07 23：19）
